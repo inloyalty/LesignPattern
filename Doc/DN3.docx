@@ -1,0 +1,90 @@
+1. What is the difference between the "const" and the "readonly" modifiers?
+const
+•	Definition: A constant field whose value is set at compile-time and cannot be changed.
+•	Initialization: Must be assigned a value at the time of declaration.
+•	Scope: Implicitly static, so you don’t need to use the static keyword.
+•	Allowed values: Only primitive types, string, or types that can be evaluated at compile-time (e.g., math expressions with constants).
+•	Performance: Inlined into the calling code at compile time (like a macro in C/C++).
+•	Versioning issue: If a const value is used in another assembly, and you change its value in your assembly, you must recompile the other assembly; otherwise, it will still use the old value.
+•	Datatype: Can only be numbers, Booleans, strings or a nullable reference  
+readonly
+•	Definition: A field whose value is set at runtime and cannot be modified afterwards.
+•	Initialization: Can be initialized either at declaration or inside the constructor.
+•	Scope: Not implicitly static (but you can declare it as static readonly if needed).
+•	Allowed values: Can hold any object reference, structs, etc.—not limited to compile-time constants.
+•	Performance: Resolved at runtime, not inlined like const.
+•	Versioning issue: No inlining; if you change the value, dependent assemblies don’t need recompilation.
+•	DataType : can be anything 
+ 
+
+2. What is difference between readonly and static readonly
+readonly
+•	Belongs to an instance of the class.
+•	Each object of the class gets its own copy of the field.
+•	Can only be assigned at declaration or inside the constructor of the class.
+•	Different objects can have different values for the same readonly field (since initialization can depend on constructor parameters).
+ static readonly
+•	Belongs to the type itself, not any instance.
+•	Only one copy exists for the entire class, shared across all objects.
+•	Can only be assigned at declaration or inside a static constructor.
+•	Value is the same for all instances.
+ 
+
+3. Can you make static const? 
+No, because all const fields are implicitly static.
+ 
+4. How can you prevent the field form being modified after its is set up in the constructor 
+My making it Readonly 
+
+5. What is the difference between the "ref" and the "out" keywords?
+ref keyword
+•	Meaning: "Pass by reference, but the variable must already be initialized before passing."
+•	Initialization requirement: The caller must assign a value before calling.
+•	Usage: The method can read and/or modify the value.
+•	Data flow: Two-way (input & output).
+ 
+
+out keyword
+•	Meaning: "Pass by reference, but the variable will only be assigned inside the method."
+•	Initialization requirement: The caller does not need to initialize the variable before passing.
+•	Usage: The method must assign a value before returning.
+•	Data flow: One-way (output only).
+   
+6.
+
+
+7.
+
+8.
+
+
+9.
+
+
+10.
+
+
+11.
+
+
+
+12.
+
+
+13.
+
+14.
+
+15.
+
+
+16.
+
+
+17.
+
+18.
+
+19.
+
+20
