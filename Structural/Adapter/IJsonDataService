@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DesignPattern.Structural.Adapter
+{
+
+    //1. Target Inteface 
+    public interface IJsonDataService
+    {
+
+        string GetJsonData();
+    }
+
+    //2. Adaptee 
+    public class XMLService
+    {
+
+        public string GetXmlData()
+        {
+            return "<data><item>Value1</item><item>Value2</item></data>";
+        }
+
+    }
+
+    //3. Adaprer
+
+    public class XMLToJsonAdaptor
+    {
+        private readonly XMLService _xMLService;
+
+        public XMLToJsonAdaptor(XMLService xMLService)
+        {
+            _xMLService = xMLService;
+        }
+
+        public string GetJsonData()
+        {
+            string xmlData = _xMLService.GetXmlData();
+            // logic to convert xml to json 
+            return "{\"data\": [\"Value1\", \"Value2\"]}";
+        }
+    }
+
+
+    public class JsonDataServiceAdaptorClient
+
+    {
+
+        public static void Test()
+        {
+            XMLService xMLService = new XMLService();
+            XMLToJsonAdaptor xMLToJsonAdaptor = new XMLToJsonAdaptor(xMLService);
+           Console.WriteLine( xMLToJsonAdaptor.GetJsonData());
+        }
+    }
+
+
+}
